@@ -4,6 +4,8 @@ This is where I keep my helm charts!
 
 Contributions welcome.
 
+See also [the images](https://github.com/dingobar/images).
+
 ## Install
 
 Currently the chart can only be installed directly from the repo.
