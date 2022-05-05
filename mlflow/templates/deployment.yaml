@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -5,9 +6,7 @@ metadata:
   labels:
     {{- include "mlflow.labels" . | nindent 4 }}
 spec:
-  {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
-  {{- end }}
   selector:
     matchLabels:
       {{- include "mlflow.selectorLabels" . | nindent 6 }}
@@ -31,19 +30,41 @@ spec:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args:
+            - --host=0.0.0.0
+            - --port={{ .Values.service.port }}
+            - --backend-store-uri=$(MLFLOW_BACKEND_STORE_URI)
+          {{- if .Values.artifactStore.defaultArtifactRoot -}}
+            - --default-artifact-root={{ .Values.artifactStore.defaultArtifactRoot }}
+          {{- end -}}
+          {{- if .Values.prometheus.expose }}
+            - --expose-prometheus prometheus
+          {{- end }}
+          envFrom:
+            - secretRef:
+                name: {{ include "mlflow.fullname" . }}
+          env:
+            {{- if .Values.artifactStore.s3EndpointUrl -}}
+            - name: MLFLOW_S3_ENDPOINT_URL
+              value: {{ .Values.artifactStore.s3EndpointUrl }}
+            {{- end -}}
+          {{- range $key, $value := .Values.extraEnv }}
+            - name: {{ $key }}
+              value: {{ $value }}
+          {{- end }}
           ports:
             - name: http
-              containerPort: 80
+              containerPort: {{ .Values.service.port }}
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /
+              path: /health
               port: http
           readinessProbe:
             httpGet:
-              path: /
+              path: /health
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}

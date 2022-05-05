@@ -1,3 +1,4 @@
+# Automatically update dependencies here using pre-commit autoupdate
 repos:
   - repo: https://github.com/norwoodj/helm-docs
     rev: v1.9.1

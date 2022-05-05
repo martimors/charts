@@ -1,66 +1,67 @@
 # Default values for mlflow.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
+# Add description annotations according to https://github.com/norwoodj/helm-docs
+# Re-generate readme using helm-docs
 
+# -- Number of replicas of mlflow server to run
 replicaCount: 1
 
 image:
-  repository: nginx
+  # -- Image to use for deploying, must support ENTRYPOINT[ "mlflow", "server" ]
+  repository: dingobar/mlflow
+  # -- See [the kubernetes docs](https://kubernetes.io/docs/concepts/containers/images/#image-pull-policy)
   pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  # -- Tag of the image to use
+  tag: "1.25.1-3.10-slim-bullseye"
 
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
+backendStore:
+  # -- The [SQLAlchemy URI](https://docs.sqlalchemy.org/en/14/core/engines.html#database-urls) of the backend store to use (if sqlite is chosen, it is auto-created in the container and does not persist)
+  backendStoreUri: file:///opt/mlflow/mlruns
+
+artifactStore:
+  # -- Where to write/read artifacts, see the mlflow docs for options. Recommended to use S3 or S3 compatible blob storage. If left blank, artifacts are saved locally in the image and not persisted.
+  defaultArtifactRoot: ""
+  # -- If you use a non-AWS S3 host such as MinIO, specify the URI here
+  s3EndpointUrl: ""
+
+prometheus:
+  # -- If `true`, prometheus metrics are exposed on /metrics
+  expose: false
+
+# -- Extra environment variables to include in the mlflow pods, in the form of key: value pairs (for example, `FOO: bar`)
+extraEnv: {}
+
 serviceAccount:
-  # Specifies whether a service account should be created
+  # -- Specifies whether a service account should be created
   create: true
-  # Annotations to add to the service account
+  # -- Annotations to add to the service account
   annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
+  # -- The name of the service account to use. If not set and create is true, a name is generated using the fullname template
   name: ""
 
+# -- Extra annotations for all pods
 podAnnotations: {}
 
+# -- Security context for the pods. The default container can run as any user/group and does not run with elevated
 podSecurityContext: {}
-  # fsGroup: 2000
 
+# -- Security context for the containers. Take presedence over podSecurityContext.
 securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
 
 service:
+  # -- See [the Kubernetes docs](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types)
   type: ClusterIP
-  port: 80
+  # -- Port for the service, container and mlflow process (passed to mlflow server --port)
+  port: 5000
 
-ingress:
-  enabled: false
-  className: ""
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  hosts:
-    - host: chart-example.local
-      paths:
-        - path: /
-          pathType: ImplementationSpecific
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
-
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+# -- Resource limits and requests for the mlflow pods
+resources:
+  {}
   # limits:
   #   cpu: 100m
   #   memory: 128Mi
@@ -68,15 +69,11 @@ resources: {}
   #   cpu: 100m
   #   memory: 128Mi
 
-autoscaling:
-  enabled: false
-  minReplicas: 1
-  maxReplicas: 100
-  targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80
-
+# -- See [the Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector)
 nodeSelector: {}
 
+# -- See [the Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/)
 tolerations: []
 
+# -- See [the Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity)
 affinity: {}
