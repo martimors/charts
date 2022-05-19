@@ -1,0 +1,22 @@
+apiVersion: v1
+entries:
+  mlflow:
+  - apiVersion: v2
+    appVersion: 1.25.1
+    created: "2022-05-19T12:59:37.294726964Z"
+    description: A Helm chart for MLflow (https://mlflow.org/)
+    digest: 2e242b4b3f74e821c02be09082eba2e3f7a52351f286f3c08a3219f95d025bc3
+    home: https://github.com/dingobar/charts
+    icon: https://mlflow.org/docs/latest/_static/MLflow-logo-final-black.png
+    maintainers:
+    - name: Martin Morset
+      url: https://github.com/dingobar
+    name: mlflow
+    sources:
+    - https://github.com/dingobar/charts
+    - https://github.com/dingobar/images
+    type: application
+    urls:
+    - https://github.com/dingobar/charts/releases/download/mlflow-0.1.2/mlflow-0.1.2.tgz
+    version: 0.1.2
+generated: "2022-05-19T12:59:37.294732264Z"
