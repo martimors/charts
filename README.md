@@ -6,6 +6,10 @@ Contributions welcome.
 
 See also [the images](https://github.com/dingobar/images).
 
+Currently, the available charts are:
+
+- [MLflow](./charts/mlflow/README.md)
+
 ## Install a chart
 
 Assuming you have [Helm](https://helm.sh/) installed,
