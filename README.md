@@ -6,16 +6,16 @@ Contributions welcome.
 
 See also [the images](https://github.com/dingobar/images).
 
-## Install
+## Install a chart
 
-Currently the chart can only be installed directly from the repo.
-
-For example, to install mlflow,
+Assuming you have [Helm](https://helm.sh/) installed,
 
 ```sh
-cd mlflow
-helm upgrade --install -n mlflow --create-namespace mlflow .
+helm repo add dingobar https://dingobar.github.io/charts/
+helm upgrade --cleanup-on-fail --install -n mlflow --create-namespace my-mlflow dingobar/mlflow
 ```
+
+For customization options, see the README.md for [each chart](./charts/).
 
 ## docs
 
