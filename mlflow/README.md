@@ -4,6 +4,19 @@
 
 A Helm chart for MLflow (https://mlflow.org/)
 
+**Homepage:** <https://github.com/dingobar/charts>
+
+## Maintainers
+
+| Name | Email | Url |
+| ---- | ------ | --- |
+| Martin Morset |  | <https://github.com/dingobar> |
+
+## Source Code
+
+* <https://github.com/dingobar/charts>
+* <https://github.com/dingobar/images>
+
 ## Values
 
 | Key | Type | Default | Description |
@@ -18,6 +31,11 @@ A Helm chart for MLflow (https://mlflow.org/)
 | image.repository | string | `"dingobar/mlflow"` | Image to use for deploying, must support ENTRYPOINT[ "mlflow", "server" ] |
 | image.tag | string | `"1.25.1-3.10-slim-bullseye"` | Tag of the image to use |
 | imagePullSecrets | list | `[]` |  |
+| ingress.annotations | object | `{}` | Ingress annotations in the form of key: value |
+| ingress.create | bool | `false` | Whether or not an Ingress resource is created (only the `networking.k8s.io/v1` API is supported) |
+| ingress.hosts | list | `[]` | List of hosts in the form [{name: foo}, {name: bar, tls: {enabled: true, secretName: my-secret}}, ...] |
+| ingress.path | string | `"/"` | Ingress path |
+| ingress.pathType | string | `"Prefix"` | Ingress path type, see [the Kubernetes docs](https://kubernetes.io/docs/concepts/services-networking/ingress/#path-types) for possible values |
 | nameOverride | string | `""` |  |
 | nodeSelector | object | `{}` | See [the Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector) |
 | podAnnotations | object | `{}` | Extra annotations for all pods |

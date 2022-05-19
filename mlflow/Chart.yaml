@@ -1,6 +1,14 @@
 apiVersion: v2
 name: mlflow
 description: A Helm chart for MLflow (https://mlflow.org/)
+home: https://github.com/dingobar/charts
+sources:
+  - https://github.com/dingobar/charts
+  - https://github.com/dingobar/images
+maintainers:
+  - name: Martin Morset
+    url: https://github.com/dingobar
+icon: https://mlflow.org/docs/latest/_static/MLflow-logo-final-black.png
 
 # A chart can be either an 'application' or a 'library' chart.
 #

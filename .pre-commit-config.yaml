@@ -4,3 +4,22 @@ repos:
     rev: v1.9.1
     hooks:
       - id: helm-docs
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.2.0 # Use the ref you want to point at
+    hooks:
+      - id: trailing-whitespace
+      - id: detect-private-key
+      - id: detect-aws-credentials
+        args:
+          - "--allow-missing-credentials"
+      - id: double-quote-string-fixer
+      - id: end-of-file-fixer
+      - id: fix-byte-order-marker
+      - id: mixed-line-ending
+      - id: pretty-format-json
+        args:
+          - "--autofix"
+  - repo: https://github.com/gruntwork-io/pre-commit
+    rev: v0.1.17
+    hooks:
+      - id: helmlint

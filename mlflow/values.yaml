@@ -59,6 +59,26 @@ service:
   # -- Port for the service, container and mlflow process (passed to mlflow server --port)
   port: 5000
 
+ingress:
+  # -- Whether or not an Ingress resource is created (only the `networking.k8s.io/v1` API is supported)
+  create: false
+  # -- Ingress annotations in the form of key: value
+  annotations: {}
+
+  # -- List of hosts in the form [{name: foo}, {name: bar, tls: {enabled: true, secretName: my-secret}}, ...]
+  hosts: []
+  # - name: ""
+  #   tls:
+  #     # Enable TLS termination for the flower Ingress
+  #     enabled: false
+  #     # the name of a pre-created Secret containing a TLS private key and certificate
+  #     secretName: ""
+
+  # -- Ingress path
+  path: /
+  # -- Ingress path type, see [the Kubernetes docs](https://kubernetes.io/docs/concepts/services-networking/ingress/#path-types) for possible values
+  pathType: Prefix
+
 # -- Resource limits and requests for the mlflow pods
 resources:
   {}
