@@ -1,4 +1,4 @@
-# Charts
+# Helm Charts
 
 This is where I keep my helm charts!
 
