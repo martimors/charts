@@ -1,0 +1,9 @@
+dependencies:
+- name: minio
+  repository: https://charts.bitnami.com/bitnami
+  version: 11.5.1
+- name: postgresql
+  repository: https://charts.bitnami.com/bitnami
+  version: 11.2.4
+digest: sha256:716799f3573b02bec839bd1e2043cc9d211eb14a6ed49091192c88029a721557
+generated: "2022-05-20T12:52:27.193550628+02:00"

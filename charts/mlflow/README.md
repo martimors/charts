@@ -17,6 +17,13 @@ A Helm chart for MLflow (https://mlflow.org/)
 * <https://github.com/dingobar/charts>
 * <https://github.com/dingobar/images>
 
+## Requirements
+
+| Repository | Name | Version |
+|------------|------|---------|
+| https://charts.bitnami.com/bitnami | minio | 11.5.1 |
+| https://charts.bitnami.com/bitnami | postgresql | 11.2.4 |
+
 ## Values
 
 | Key | Type | Default | Description |
@@ -36,10 +43,19 @@ A Helm chart for MLflow (https://mlflow.org/)
 | ingress.hosts | list | `[]` | List of hosts in the form [{name: foo}, {name: bar, tls: {enabled: true, secretName: my-secret}}, ...] |
 | ingress.path | string | `"/"` | Ingress path |
 | ingress.pathType | string | `"Prefix"` | Ingress path type, see [the Kubernetes docs](https://kubernetes.io/docs/concepts/services-networking/ingress/#path-types) for possible values |
+| minio.auth.rootPassword | string | `"mlflow-secret"` |  |
+| minio.auth.rootUser | string | `"mlflow-key"` |  |
+| minio.defaultBuckets | string | `"mlflow"` |  |
+| minio.enabled | bool | `true` | Whether to deploy the MinIO subchart |
+| minio.persistence.enabled | bool | `false` |  |
 | nameOverride | string | `""` |  |
 | nodeSelector | object | `{}` | See [the Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector) |
 | podAnnotations | object | `{}` | Extra annotations for all pods |
 | podSecurityContext | object | `{}` | Security context for the pods. The default container can run as any user/group and does not run with elevated |
+| postgresql.auth.database | string | `"mlflow"` |  |
+| postgresql.auth.password | string | `"mlflow"` |  |
+| postgresql.auth.username | string | `"mlflow"` |  |
+| postgresql.enabled | bool | `true` | Whether to deploy the PostgreSQL subchart |
 | prometheus.expose | bool | `false` | If `true`, prometheus metrics are exposed on /metrics |
 | replicaCount | int | `1` | Number of replicas of mlflow server to run |
 | resources | object | `{}` | Resource limits and requests for the mlflow pods |

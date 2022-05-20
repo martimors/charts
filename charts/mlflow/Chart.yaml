@@ -30,3 +30,16 @@ version: 0.2.0
 # follow Semantic Versioning. They should reflect the version the application is using.
 # It is recommended to use it with quotes.
 appVersion: "1.25.1"
+
+# Chart dependencies MinIO and postgresql
+# Depending on your Kubernetes configuration, you probably don't want to enable these in production
+# I recommend you offload all state to hosted services like AWS S3 and AWS RDS for PostgreSQL.
+dependencies:
+  - name: minio
+    repository: https://charts.bitnami.com/bitnami
+    version: 11.5.1
+    condition: minio.enabled
+  - name: postgresql
+    repository: https://charts.bitnami.com/bitnami
+    version: 11.2.4
+    condition: postgresql.enabled

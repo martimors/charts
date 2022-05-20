@@ -97,3 +97,23 @@ tolerations: []
 
 # -- See [the Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity)
 affinity: {}
+
+# Values for subcharts
+# Set enabled=false if you don't want to use them
+# If you need to customize the values of the subcharts, you can do that here
+minio:
+  # -- Whether to deploy the MinIO subchart
+  enabled: true
+  defaultBuckets: mlflow
+  persistence:
+    enabled: false
+  auth:
+    rootUser: mlflow-key
+    rootPassword: mlflow-secret
+postgresql:
+  # -- Whether to deploy the PostgreSQL subchart
+  enabled: true
+  auth:
+    username: mlflow
+    password: mlflow
+    database: mlflow

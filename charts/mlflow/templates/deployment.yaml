@@ -36,8 +36,8 @@ spec:
             - --host=0.0.0.0
             - --port={{ .Values.service.port }}
             - --backend-store-uri=$(MLFLOW_BACKEND_STORE_URI)
-          {{- if .Values.artifactStore.defaultArtifactRoot -}}
-            - --default-artifact-root={{ .Values.artifactStore.defaultArtifactRoot }}
+          {{- if (include "mlflow.artifact.root" .) }}
+            - --default-artifact-root={{ (include "mlflow.artifact.root" .) }}
           {{- end -}}
           {{- if .Values.prometheus.expose }}
             - --expose-prometheus prometheus
@@ -46,10 +46,10 @@ spec:
             - secretRef:
                 name: {{ include "mlflow.fullname" . }}
           env:
-            {{- if .Values.artifactStore.s3EndpointUrl -}}
+          {{- if (include "mlflow.s3.endpoint" .) }}
             - name: MLFLOW_S3_ENDPOINT_URL
-              value: {{ .Values.artifactStore.s3EndpointUrl }}
-            {{- end -}}
+              value: {{ include "mlflow.s3.endpoint" . }}
+          {{- end }}
           {{- range $key, $value := .Values.extraEnv }}
             - name: {{ $key }}
               value: {{ $value }}
