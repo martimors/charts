@@ -8,7 +8,8 @@ See also [the images](https://github.com/dingobar/images).
 
 Currently, the available charts are:
 
-- [MLflow](./charts/mlflow/README.md)
+- [MLflow](./charts/mlflow/README.md): MLflow chart with built-in functional tests and
+  MinIO/PostgreSQL subcharts for testing purposes
 
 ## Install a chart
 
@@ -23,8 +24,8 @@ For customization options, see the README.md for [each chart](./charts/).
 
 ## docs
 
-We generate docs using [helm-docs](https://github.com/norwoodj/helm-docs). I recommend using the pre-commit hook.
-See the [pre-commit config file](./.pre-commit-config.yaml) for details.
+We generate docs using [helm-docs](https://github.com/norwoodj/helm-docs). I recommend using the
+pre-commit hook. See the [pre-commit config file](./.pre-commit-config.yaml) for details.
 
 ```sh
 pip3 install --upgrade pre-commit
