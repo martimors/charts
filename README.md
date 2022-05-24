@@ -18,6 +18,8 @@ Assuming you have [Helm](https://helm.sh/) installed,
 ```sh
 helm repo add dingobar https://dingobar.github.io/charts/
 helm upgrade --cleanup-on-fail --install -n mlflow --create-namespace my-mlflow dingobar/mlflow
+# Run the tests if you'd like
+helm test -n mlflow my-mlflow
 ```
 
 For customization options, see the README.md for [each chart](./charts/).
