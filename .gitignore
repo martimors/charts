@@ -1,0 +1,5 @@
+*.tgz
+venv/
+.vscode/
+test.txt
+.env

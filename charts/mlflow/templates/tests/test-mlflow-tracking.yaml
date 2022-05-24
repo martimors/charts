@@ -1,0 +1,40 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "mlflow.fullname" . }}-test-mlflow-tracking"
+  labels:
+    {{- include "mlflow.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: mlflow
+      image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+      command: ['python']
+      args: ['./scripts/test_mlflow_tracking.py']
+      volumeMounts:
+        - name:  scripts
+          mountPath:  /opt/mlflow/scripts
+      envFrom:
+        - secretRef:
+            name: {{ include "mlflow.fullname" . }}
+      {{- if .Values.extraEnvFrom }}
+        {{- .Values.extraEnvFrom | toYaml | nindent 8 }}
+      {{- end}}
+      env:
+        - name: MLFLOW_TRACKING_URI
+          value: "http://{{ include "mlflow.fullname" . }}:{{ .Values.service.port }}"
+      {{- if (include "mlflow.s3.endpoint" .) }}
+        - name: MLFLOW_S3_ENDPOINT_URL
+          value: {{ include "mlflow.s3.endpoint" . }}
+      {{- end }}
+      {{- range $key, $value := .Values.extraEnv }}
+        - name: {{ $key }}
+          value: {{ $value }}
+      {{- end }}
+  restartPolicy: Never
+  volumes:
+    - name:  scripts
+      configMap:
+        name: {{ include "mlflow.fullname" . }}-test-scripts

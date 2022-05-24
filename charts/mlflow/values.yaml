@@ -36,6 +36,13 @@ prometheus:
 # -- Extra environment variables to include in the mlflow pods, in the form of key: value pairs (for example, `FOO: bar`)
 extraEnv: {}
 
+# -- Extra secrets or configmaps to get env-variables from
+extraEnvFrom: ~
+# - configMapRef:
+#     name: my-configmap
+# - secretRef:
+#     name: my-secret
+
 serviceAccount:
   # -- Specifies whether a service account should be created
   create: true
@@ -97,3 +104,23 @@ tolerations: []
 
 # -- See [the Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity)
 affinity: {}
+
+# Values for subcharts
+# Set enabled=false if you don't want to use them
+# If you need to customize the values of the subcharts, you can do that here
+minio:
+  # -- Whether to deploy the MinIO subchart (recommend using external S3 such as AWS S3 in production)
+  enabled: true
+  defaultBuckets: mlflow
+  persistence:
+    enabled: false
+  auth:
+    rootUser: mlflow-key
+    rootPassword: mlflow-secret
+postgresql:
+  # -- Whether to deploy the PostgreSQL subchart (highly recommended to use a managed database service such as AWS RDS in production)
+  enabled: true
+  auth:
+    username: mlflow
+    password: mlflow
+    database: mlflow
