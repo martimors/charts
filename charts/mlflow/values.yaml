@@ -109,7 +109,7 @@ affinity: {}
 # Set enabled=false if you don't want to use them
 # If you need to customize the values of the subcharts, you can do that here
 minio:
-  # -- Whether to deploy the MinIO subchart
+  # -- Whether to deploy the MinIO subchart (recommend using external S3 such as AWS S3 in production)
   enabled: true
   defaultBuckets: mlflow
   persistence:
@@ -118,7 +118,7 @@ minio:
     rootUser: mlflow-key
     rootPassword: mlflow-secret
 postgresql:
-  # -- Whether to deploy the PostgreSQL subchart
+  # -- Whether to deploy the PostgreSQL subchart (highly recommended to use a managed database service such as AWS RDS in production)
   enabled: true
   auth:
     username: mlflow

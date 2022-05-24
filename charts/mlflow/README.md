@@ -47,7 +47,7 @@ A Helm chart for MLflow (https://mlflow.org/)
 | minio.auth.rootPassword | string | `"mlflow-secret"` |  |
 | minio.auth.rootUser | string | `"mlflow-key"` |  |
 | minio.defaultBuckets | string | `"mlflow"` |  |
-| minio.enabled | bool | `true` | Whether to deploy the MinIO subchart |
+| minio.enabled | bool | `true` | Whether to deploy the MinIO subchart (recommend using external S3 such as AWS S3 in production) |
 | minio.persistence.enabled | bool | `false` |  |
 | nameOverride | string | `""` |  |
 | nodeSelector | object | `{}` | See [the Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector) |
@@ -56,7 +56,7 @@ A Helm chart for MLflow (https://mlflow.org/)
 | postgresql.auth.database | string | `"mlflow"` |  |
 | postgresql.auth.password | string | `"mlflow"` |  |
 | postgresql.auth.username | string | `"mlflow"` |  |
-| postgresql.enabled | bool | `true` | Whether to deploy the PostgreSQL subchart |
+| postgresql.enabled | bool | `true` | Whether to deploy the PostgreSQL subchart (highly recommended to use a managed database service such as AWS RDS in production) |
 | prometheus.expose | bool | `false` | If `true`, prometheus metrics are exposed on /metrics |
 | replicaCount | int | `1` | Number of replicas of mlflow server to run |
 | resources | object | `{}` | Resource limits and requests for the mlflow pods |
