@@ -8,10 +8,14 @@ metadata:
   annotations:
     "helm.sh/hook": test
 spec:
+  securityContext:
+    {{- toYaml .Values.podSecurityContext | nindent 4 }}
   containers:
     - name: mlflow
       image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
       command: ['python']
+      securityContext:
+        {{- toYaml .Values.securityContext | nindent 8 }}
       args: ['./scripts/test_mlflow_tracking.py']
       volumeMounts:
         - name:  scripts

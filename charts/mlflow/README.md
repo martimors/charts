@@ -1,6 +1,6 @@
 # mlflow
 
-![Version: 0.3.1](https://img.shields.io/badge/Version-0.3.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.25.1](https://img.shields.io/badge/AppVersion-1.25.1-informational?style=flat-square)
+![Version: 0.3.2](https://img.shields.io/badge/Version-0.3.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.25.1](https://img.shields.io/badge/AppVersion-1.25.1-informational?style=flat-square)
 
 A Helm chart for MLflow (https://mlflow.org/)
 
@@ -52,7 +52,7 @@ A Helm chart for MLflow (https://mlflow.org/)
 | nameOverride | string | `""` |  |
 | nodeSelector | object | `{}` | See [the Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector) |
 | podAnnotations | object | `{}` | Extra annotations for all pods |
-| podSecurityContext | object | `{}` | Security context for the pods. The default container can run as any user/group and does not run with elevated |
+| podSecurityContext | object | `{}` | Security context for the pods. The default container can run as any user/group and does not run with elevated access |
 | postgresql.auth.database | string | `"mlflow"` |  |
 | postgresql.auth.password | string | `"mlflow"` |  |
 | postgresql.auth.username | string | `"mlflow"` |  |
@@ -60,7 +60,7 @@ A Helm chart for MLflow (https://mlflow.org/)
 | prometheus.expose | bool | `false` | If `true`, prometheus metrics are exposed on /metrics |
 | replicaCount | int | `1` | Number of replicas of mlflow server to run |
 | resources | object | `{}` | Resource limits and requests for the mlflow pods |
-| securityContext | object | `{}` | Security context for the containers. Take presedence over podSecurityContext. |
+| securityContext | object | `{}` | Security context for the individual containers. Take presedence over podSecurityContext. |
 | service.port | int | `5000` |  |
 | service.type | string | `"ClusterIP"` | See [the Kubernetes docs](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types) |
 | serviceAccount.annotations | object | `{}` | Annotations to add to the service account |
