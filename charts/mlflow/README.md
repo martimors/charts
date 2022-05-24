@@ -33,6 +33,7 @@ A Helm chart for MLflow (https://mlflow.org/)
 | artifactStore.s3EndpointUrl | string | `""` | If you use a non-AWS S3 host such as MinIO, specify the URI here |
 | backendStore.backendStoreUri | string | `"file:///opt/mlflow/mlruns"` | The [SQLAlchemy URI](https://docs.sqlalchemy.org/en/14/core/engines.html#database-urls) of the backend store to use (if sqlite is chosen, it is auto-created in the container and does not persist) |
 | extraEnv | object | `{}` | Extra environment variables to include in the mlflow pods, in the form of key: value pairs (for example, `FOO: bar`) |
+| extraEnvFrom | string | `nil` | Extra secrets or configmaps to get env-variables from |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` | See [the kubernetes docs](https://kubernetes.io/docs/concepts/containers/images/#image-pull-policy) |
 | image.repository | string | `"dingobar/mlflow"` | Image to use for deploying, must support ENTRYPOINT[ "mlflow", "server" ] |

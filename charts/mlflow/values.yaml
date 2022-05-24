@@ -36,6 +36,13 @@ prometheus:
 # -- Extra environment variables to include in the mlflow pods, in the form of key: value pairs (for example, `FOO: bar`)
 extraEnv: {}
 
+# -- Extra secrets or configmaps to get env-variables from
+extraEnvFrom: ~
+# - configMapRef:
+#     name: my-configmap
+# - secretRef:
+#     name: my-secret
+
 serviceAccount:
   # -- Specifies whether a service account should be created
   create: true
