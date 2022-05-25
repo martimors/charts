@@ -47,8 +47,17 @@ spec:
                 name: {{ include "mlflow.fullname" . }}
           {{- if .Values.extraEnvFrom }}
             {{- .Values.extraEnvFrom | toYaml | nindent 12 }}
-          {{- end}}
+          {{- end }}
           env:
+          {{- if .Values.backendStore.backendStoreUriExistingSecret }}
+            {{- with .Values.backendStore.backendStoreUriExistingSecret }}
+            - name: MLFLOW_BACKEND_STORE_URI
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .name }}
+                  key: {{ .key }}
+            {{- end }}
+          {{- end }}
           {{- if (include "mlflow.s3.endpoint" .) }}
             - name: MLFLOW_S3_ENDPOINT_URL
               value: {{ include "mlflow.s3.endpoint" . }}
