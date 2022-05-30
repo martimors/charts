@@ -1,6 +1,6 @@
 # mlflow
 
-![Version: 0.3.2](https://img.shields.io/badge/Version-0.3.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.25.1](https://img.shields.io/badge/AppVersion-1.25.1-informational?style=flat-square)
+![Version: 0.4.0](https://img.shields.io/badge/Version-0.4.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.25.1](https://img.shields.io/badge/AppVersion-1.25.1-informational?style=flat-square)
 
 A Helm chart for MLflow (https://mlflow.org/)
 
@@ -32,6 +32,7 @@ A Helm chart for MLflow (https://mlflow.org/)
 | artifactStore.defaultArtifactRoot | string | `""` | Where to write/read artifacts, see the mlflow docs for options. Recommended to use S3 or S3 compatible blob storage. If left blank, artifacts are saved locally in the image and not persisted. |
 | artifactStore.s3EndpointUrl | string | `""` | If you use a non-AWS S3 host such as MinIO, specify the URI here |
 | backendStore.backendStoreUri | string | `"file:///opt/mlflow/mlruns"` | The [SQLAlchemy URI](https://docs.sqlalchemy.org/en/14/core/engines.html#database-urls) of the backend store to use (if sqlite is chosen, it is auto-created in the container and does not persist) |
+| backendStore.backendStoreUriExistingSecret | string | `nil` | Existing secret name and key to get the backendStoreUri from (name: foo, key: bar) |
 | extraEnv | object | `{}` | Extra environment variables to include in the mlflow pods, in the form of key: value pairs (for example, `FOO: bar`) |
 | extraEnvFrom | string | `nil` | Extra secrets or configmaps to get env-variables from |
 | fullnameOverride | string | `""` |  |
