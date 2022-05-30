@@ -94,3 +94,16 @@ The S3 bucket to use (if minio enabled, use that, otherwise use whatever specifi
 {{- default "" .Values.artifactStore.defaultArtifactRoot }}
 {{- end }}
 {{- end }}
+
+{{/*
+Logic to determine whether or not to deploy a secret
+(should be false if the secret is completely empty and user supplies all secrets manually)
+*/}}
+{{- define "mlflow.secret.deploy" -}}
+{{- $anySecrets := (or (not .Values.backendStore.backendStoreUriExistingSecret) .Values.minio.enabled) -}}
+{{- if $anySecrets -}}
+{{- print "true" -}}
+{{- else }}
+{{- print ""}}
+{{- end }}
+{{- end }}
