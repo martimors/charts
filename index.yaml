@@ -3,6 +3,33 @@ entries:
   mlflow:
   - apiVersion: v2
     appVersion: 1.25.1
+    created: "2022-05-30T11:11:19.907930851Z"
+    dependencies:
+    - condition: minio.enabled
+      name: minio
+      repository: https://charts.bitnami.com/bitnami
+      version: 11.5.1
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 11.2.4
+    description: A Helm chart for MLflow (https://mlflow.org/)
+    digest: 57b3f2d80bc5b108536704a2f8cc934050b9a8c86a77bb5168021e6ac08e7239
+    home: https://github.com/dingobar/charts
+    icon: https://mlflow.org/docs/latest/_static/MLflow-logo-final-black.png
+    maintainers:
+    - name: Martin Morset
+      url: https://github.com/dingobar
+    name: mlflow
+    sources:
+    - https://github.com/dingobar/charts
+    - https://github.com/dingobar/images
+    type: application
+    urls:
+    - https://github.com/dingobar/charts/releases/download/mlflow-0.4.0/mlflow-0.4.0.tgz
+    version: 0.4.0
+  - apiVersion: v2
+    appVersion: 1.25.1
     created: "2022-05-24T14:56:28.554130935Z"
     dependencies:
     - condition: minio.enabled
@@ -118,4 +145,4 @@ entries:
     urls:
     - https://github.com/dingobar/charts/releases/download/mlflow-0.1.2/mlflow-0.1.2.tgz
     version: 0.1.2
-generated: "2022-05-24T14:56:28.554154035Z"
+generated: "2022-05-30T11:11:19.907974451Z"
