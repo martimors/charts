@@ -43,8 +43,10 @@ spec:
             - --expose-prometheus prometheus
           {{- end }}
           envFrom:
+          {{- if (include "mlflow.secret.deploy" .) }}
             - secretRef:
                 name: {{ include "mlflow.fullname" . }}
+          {{- end }}
           {{- if .Values.extraEnvFrom }}
             {{- .Values.extraEnvFrom | toYaml | nindent 12 }}
           {{- end }}
