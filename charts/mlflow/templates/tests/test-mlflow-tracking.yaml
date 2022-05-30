@@ -21,8 +21,10 @@ spec:
         - name:  scripts
           mountPath:  /opt/mlflow/scripts
       envFrom:
+      {{- if (include "mlflow.secret.deploy" .) }}
         - secretRef:
             name: {{ include "mlflow.fullname" . }}
+      {{- end}}
       {{- if .Values.extraEnvFrom }}
         {{- .Values.extraEnvFrom | toYaml | nindent 8 }}
       {{- end}}
