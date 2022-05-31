@@ -40,7 +40,7 @@ spec:
             - --default-artifact-root={{ (include "mlflow.artifact.root" .) }}
           {{- end }}
           {{- if .Values.prometheus.expose }}
-            - --expose-prometheus prometheus
+            - --expose-prometheus=prometheus
           {{- end }}
           envFrom:
           {{- if (include "mlflow.secret.deploy" .) }}
