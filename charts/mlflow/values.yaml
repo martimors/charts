@@ -56,6 +56,9 @@ serviceAccount:
 # -- Extra annotations for all pods
 podAnnotations: {}
 
+# -- Extra labels to add to all resources
+podLabels: {}
+
 # -- Security context for the pods. The default container can run as any user/group and does not run with elevated access
 podSecurityContext: {}
 

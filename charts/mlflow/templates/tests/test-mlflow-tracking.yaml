@@ -11,7 +11,7 @@ spec:
   securityContext:
     {{- toYaml .Values.podSecurityContext | nindent 4 }}
   containers:
-    - name: mlflow
+    - name: mlflow-tests
       image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
       command: ['python']
       securityContext:

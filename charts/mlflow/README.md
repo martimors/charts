@@ -1,6 +1,6 @@
 # mlflow
 
-![Version: 0.4.4](https://img.shields.io/badge/Version-0.4.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.26.1](https://img.shields.io/badge/AppVersion-1.26.1-informational?style=flat-square)
+![Version: 0.5.0](https://img.shields.io/badge/Version-0.5.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.26.1](https://img.shields.io/badge/AppVersion-1.26.1-informational?style=flat-square)
 
 A Helm chart for MLflow (https://mlflow.org/)
 
@@ -53,6 +53,7 @@ A Helm chart for MLflow (https://mlflow.org/)
 | nameOverride | string | `""` |  |
 | nodeSelector | object | `{}` | See [the Kubernetes docs](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector) |
 | podAnnotations | object | `{}` | Extra annotations for all pods |
+| podLabels | object | `{}` | Extra labels to add to all resources |
 | podSecurityContext | object | `{}` | Security context for the pods. The default container can run as any user/group and does not run with elevated access |
 | postgresql.auth.database | string | `"mlflow"` |  |
 | postgresql.auth.password | string | `"mlflow"` |  |
