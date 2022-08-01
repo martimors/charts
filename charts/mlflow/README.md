@@ -38,7 +38,7 @@ A Helm chart for MLflow (https://mlflow.org/)
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` | See [the kubernetes docs](https://kubernetes.io/docs/concepts/containers/images/#image-pull-policy) |
 | image.repository | string | `"dingobar/mlflow"` | Image to use for deploying, must support ENTRYPOINT[ "mlflow", "server" ] |
-| image.tag | string | `"1.26.1-3.10-slim-bullseye"` | Tag of the image to use |
+| image.tag | string | `"1.27.0-3.10-slim-bullseye"` | Tag of the image to use |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | object | `{}` | Ingress annotations in the form of key: value |
 | ingress.create | bool | `false` | Whether or not an Ingress resource is created (only the `networking.k8s.io/v1` API is supported) |
