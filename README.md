@@ -36,6 +36,6 @@ pre-commit install
 
 ## Improvement ideas
 
-- Add MinIO and PostgreSQL sub-charts for testing
 - CI pipeline that runs helm tests
 - Better test for mlflow (maybe log an artifact or something?)
+- Database upgrade job
